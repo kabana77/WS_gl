@@ -1,0 +1,624 @@
+object AmbilDataFrm: TAmbilDataFrm
+  Left = 271
+  Top = 153
+  BorderStyle = bsDialog
+  Caption = 'Ambil Data'
+  ClientHeight = 398
+  ClientWidth = 681
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnClose = FormClose
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 357
+    Width = 681
+    Height = 41
+    Align = alBottom
+    TabOrder = 0
+    object BitBtn1: TBitBtn
+      Left = 64
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = '&Proses'
+      TabOrder = 0
+      OnClick = BitBtn1Click
+      Glyph.Data = {
+        DE010000424DDE01000000000000760000002800000024000000120000000100
+        0400000000006801000000000000000000001000000000000000000000000000
+        80000080000000808000800000008000800080800000C0C0C000808080000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333444444
+        33333333333F8888883F33330000324334222222443333388F3833333388F333
+        000032244222222222433338F8833FFFFF338F3300003222222AAAAA22243338
+        F333F88888F338F30000322222A33333A2224338F33F8333338F338F00003222
+        223333333A224338F33833333338F38F00003222222333333A444338FFFF8F33
+        3338888300003AAAAAAA33333333333888888833333333330000333333333333
+        333333333333333333FFFFFF000033333333333344444433FFFF333333888888
+        00003A444333333A22222438888F333338F3333800003A2243333333A2222438
+        F38F333333833338000033A224333334422224338338FFFFF8833338000033A2
+        22444442222224338F3388888333FF380000333A2222222222AA243338FF3333
+        33FF88F800003333AA222222AA33A3333388FFFFFF8833830000333333AAAAAA
+        3333333333338888883333330000333333333333333333333333333333333333
+        0000}
+      NumGlyphs = 2
+    end
+    object BitBtn2: TBitBtn
+      Left = 152
+      Top = 8
+      Width = 75
+      Height = 25
+      TabOrder = 1
+      OnClick = BitBtn2Click
+      Kind = bkClose
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 49
+    Width = 681
+    Height = 308
+    Align = alClient
+    TabOrder = 1
+    object L1: TLabel
+      Left = 51
+      Top = 208
+      Width = 12
+      Height = 13
+      Caption = '-->'
+    end
+    object L2: TLabel
+      Left = 51
+      Top = 224
+      Width = 12
+      Height = 13
+      Caption = '-->'
+    end
+    object L3: TLabel
+      Left = 51
+      Top = 240
+      Width = 12
+      Height = 13
+      Caption = '-->'
+    end
+    object L4: TLabel
+      Left = 51
+      Top = 256
+      Width = 12
+      Height = 13
+      Caption = '-->'
+    end
+    object Label1: TLabel
+      Left = 91
+      Top = 208
+      Width = 67
+      Height = 13
+      Caption = 'Kas dan Bank'
+    end
+    object Label2: TLabel
+      Left = 91
+      Top = 224
+      Width = 195
+      Height = 13
+      Caption = 'Hutang Dagang Belum Difakturkan (LPB)'
+    end
+    object Label3: TLabel
+      Left = 91
+      Top = 240
+      Width = 76
+      Height = 13
+      Caption = 'Hutang Dagang'
+    end
+    object Label4: TLabel
+      Left = 91
+      Top = 256
+      Width = 77
+      Height = 13
+      Caption = 'Piutang Dagang'
+    end
+    object Label5: TLabel
+      Left = 32
+      Top = 44
+      Width = 75
+      Height = 13
+      Caption = 'Nota Pembelian'
+    end
+    object Label6: TLabel
+      Left = 32
+      Top = 76
+      Width = 73
+      Height = 13
+      Caption = 'Nota Penjualan'
+    end
+    object Label7: TLabel
+      Left = 32
+      Top = 108
+      Width = 67
+      Height = 13
+      Caption = 'Kas dan Bank'
+    end
+    object Label8: TLabel
+      Left = 32
+      Top = 140
+      Width = 51
+      Height = 13
+      Caption = 'Ambil Data'
+    end
+    object Label9: TLabel
+      Left = 32
+      Top = 8
+      Width = 188
+      Height = 24
+      Caption = 'TUTUP TRANSAKSI'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clRed
+      Font.Height = -19
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label10: TLabel
+      Left = 32
+      Top = 176
+      Width = 122
+      Height = 24
+      Caption = 'AMBIL DATA'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clRed
+      Font.Height = -19
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object Label11: TLabel
+      Left = 264
+      Top = 8
+      Width = 253
+      Height = 24
+      Caption = 'OPERATOR YANG NUTUP'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clRed
+      Font.Height = -19
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object DBText1: TDBText
+      Left = 264
+      Top = 40
+      Width = 79
+      Height = 20
+      AutoSize = True
+      DataField = 'OPR_BELI'
+      DataSource = DMFrm.dsQCloseDate
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clFuchsia
+      Font.Height = -16
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold, fsItalic]
+      ParentFont = False
+    end
+    object DBText2: TDBText
+      Left = 480
+      Top = 40
+      Width = 79
+      Height = 20
+      AutoSize = True
+      DataField = 'TANGGAL_BELI22'
+      DataSource = DMFrm.dsQCloseDate
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGreen
+      Font.Height = -16
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold, fsItalic]
+      ParentFont = False
+    end
+    object DBText3: TDBText
+      Left = 264
+      Top = 72
+      Width = 79
+      Height = 20
+      AutoSize = True
+      DataField = 'OPR_JUAL'
+      DataSource = DMFrm.dsQCloseDate
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clFuchsia
+      Font.Height = -16
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold, fsItalic]
+      ParentFont = False
+    end
+    object DBText4: TDBText
+      Left = 480
+      Top = 72
+      Width = 79
+      Height = 20
+      AutoSize = True
+      DataField = 'TANGGAL_JUAL2'
+      DataSource = DMFrm.dsQCloseDate
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGreen
+      Font.Height = -16
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold, fsItalic]
+      ParentFont = False
+    end
+    object DBText5: TDBText
+      Left = 264
+      Top = 104
+      Width = 79
+      Height = 20
+      AutoSize = True
+      DataField = 'OPR_KAS'
+      DataSource = DMFrm.dsQCloseDate
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clFuchsia
+      Font.Height = -16
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold, fsItalic]
+      ParentFont = False
+    end
+    object DBText6: TDBText
+      Left = 480
+      Top = 104
+      Width = 79
+      Height = 20
+      AutoSize = True
+      DataField = 'TANGGAL_KAS2'
+      DataSource = DMFrm.dsQCloseDate
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGreen
+      Font.Height = -16
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold, fsItalic]
+      ParentFont = False
+    end
+    object DBText7: TDBText
+      Left = 368
+      Top = 136
+      Width = 79
+      Height = 20
+      AutoSize = True
+      DataField = 'TANGGAL'
+      DataSource = DMFrm.dsQCloseDate
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clFuchsia
+      Font.Height = -16
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold, fsItalic]
+      ParentFont = False
+    end
+    object DBText8: TDBText
+      Left = 480
+      Top = 136
+      Width = 79
+      Height = 20
+      AutoSize = True
+      DataField = 'TANGGAL2'
+      DataSource = DMFrm.dsQCloseDate
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clGreen
+      Font.Height = -16
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold, fsItalic]
+      ParentFont = False
+    end
+    object L5: TLabel
+      Left = 51
+      Top = 272
+      Width = 12
+      Height = 13
+      Caption = '-->'
+    end
+    object Label14: TLabel
+      Left = 91
+      Top = 272
+      Width = 60
+      Height = 13
+      Caption = 'Hutang Jasa'
+    end
+    object DBText9: TDBText
+      Left = 264
+      Top = 136
+      Width = 79
+      Height = 20
+      AutoSize = True
+      DataField = 'OPR_BANK'
+      DataSource = DMFrm.dsQCloseDate
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clFuchsia
+      Font.Height = -16
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold, fsItalic]
+      ParentFont = False
+    end
+    object vCloseDate: TwwDBDateTimePicker
+      Left = 128
+      Top = 36
+      Width = 121
+      Height = 21
+      CalendarAttributes.Font.Charset = DEFAULT_CHARSET
+      CalendarAttributes.Font.Color = clWindowText
+      CalendarAttributes.Font.Height = -11
+      CalendarAttributes.Font.Name = 'MS Sans Serif'
+      CalendarAttributes.Font.Style = []
+      DataField = 'TANGGAL_BELI'
+      DataSource = DMFrm.dsQCloseDate
+      Date = 40451.000000000000000000
+      Epoch = 1950
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clNavy
+      Font.Height = -16
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+      ShowButton = True
+      TabOrder = 0
+      DisplayFormat = 'dd mmm yyyy'
+      OnCloseUp = vCloseDateCloseUp
+    end
+    object wwDBDateTimePicker1: TwwDBDateTimePicker
+      Left = 128
+      Top = 68
+      Width = 121
+      Height = 21
+      CalendarAttributes.Font.Charset = DEFAULT_CHARSET
+      CalendarAttributes.Font.Color = clWindowText
+      CalendarAttributes.Font.Height = -11
+      CalendarAttributes.Font.Name = 'MS Sans Serif'
+      CalendarAttributes.Font.Style = []
+      DataField = 'TANGGAL_JUAL'
+      DataSource = DMFrm.dsQCloseDate
+      Date = 40450.000000000000000000
+      Epoch = 1950
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clNavy
+      Font.Height = -16
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+      ShowButton = True
+      TabOrder = 1
+      DisplayFormat = 'dd mmm yyyy'
+      OnCloseUp = wwDBDateTimePicker1CloseUp
+    end
+    object wwDBDateTimePicker2: TwwDBDateTimePicker
+      Left = 128
+      Top = 100
+      Width = 121
+      Height = 21
+      CalendarAttributes.Font.Charset = DEFAULT_CHARSET
+      CalendarAttributes.Font.Color = clWindowText
+      CalendarAttributes.Font.Height = -11
+      CalendarAttributes.Font.Name = 'MS Sans Serif'
+      CalendarAttributes.Font.Style = []
+      DataField = 'TANGGAL_KAS'
+      DataSource = DMFrm.dsQCloseDate
+      Date = 40450.000000000000000000
+      Epoch = 1950
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clNavy
+      Font.Height = -16
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+      ShowButton = True
+      TabOrder = 2
+      DisplayFormat = 'dd mmm yyyy'
+      OnCloseUp = wwDBDateTimePicker2CloseUp
+    end
+    object wwDBDateTimePicker3: TwwDBDateTimePicker
+      Left = 128
+      Top = 132
+      Width = 121
+      Height = 21
+      CalendarAttributes.Font.Charset = DEFAULT_CHARSET
+      CalendarAttributes.Font.Color = clWindowText
+      CalendarAttributes.Font.Height = -11
+      CalendarAttributes.Font.Name = 'MS Sans Serif'
+      CalendarAttributes.Font.Style = []
+      DataField = 'TANGGAL'
+      DataSource = DMFrm.dsQCloseDate
+      Date = 40420.000000000000000000
+      Epoch = 1950
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clNavy
+      Font.Height = -16
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+      ShowButton = True
+      TabOrder = 3
+      DisplayFormat = 'dd mmm yyyy'
+      OnCloseUp = wwDBDateTimePicker3CloseUp
+    end
+    object CheckBox1: TCheckBox
+      Left = 19
+      Top = 206
+      Width = 17
+      Height = 17
+      TabOrder = 4
+    end
+    object CheckBox2: TCheckBox
+      Left = 19
+      Top = 222
+      Width = 17
+      Height = 17
+      TabOrder = 5
+    end
+    object CheckBox3: TCheckBox
+      Left = 19
+      Top = 238
+      Width = 17
+      Height = 17
+      TabOrder = 6
+    end
+    object CheckBox4: TCheckBox
+      Left = 19
+      Top = 254
+      Width = 17
+      Height = 17
+      TabOrder = 7
+    end
+    object CheckBox5: TCheckBox
+      Left = 19
+      Top = 270
+      Width = 17
+      Height = 17
+      TabOrder = 8
+    end
+  end
+  object Panel3: TPanel
+    Left = 0
+    Top = 0
+    Width = 681
+    Height = 49
+    Align = alTop
+    TabOrder = 2
+    object GroupBox2: TGroupBox
+      Left = 1
+      Top = 1
+      Width = 287
+      Height = 47
+      Align = alLeft
+      Caption = 'Filter Tanggal'
+      TabOrder = 0
+      TabStop = True
+      object Label12: TLabel
+        Left = 132
+        Top = 22
+        Width = 24
+        Height = 13
+        Caption = 'S/D'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object VTglAwal2: TwwDBDateTimePicker
+        Left = 8
+        Top = 16
+        Width = 121
+        Height = 24
+        DisableThemes = True
+        CalendarAttributes.Font.Charset = DEFAULT_CHARSET
+        CalendarAttributes.Font.Color = clWindowText
+        CalendarAttributes.Font.Height = -11
+        CalendarAttributes.Font.Name = 'MS Sans Serif'
+        CalendarAttributes.Font.Style = []
+        Color = clGreen
+        Epoch = 1950
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ShowButton = True
+        TabOrder = 0
+        DisplayFormat = 'dd mmm yyyy'
+        OnChange = VTglAwal2Change
+      end
+      object vTglAkhir2: TwwDBDateTimePicker
+        Left = 160
+        Top = 16
+        Width = 121
+        Height = 24
+        DisableThemes = True
+        CalendarAttributes.Font.Charset = DEFAULT_CHARSET
+        CalendarAttributes.Font.Color = clWindowText
+        CalendarAttributes.Font.Height = -11
+        CalendarAttributes.Font.Name = 'MS Sans Serif'
+        CalendarAttributes.Font.Style = []
+        Color = clGreen
+        Epoch = 1950
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Height = -13
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ShowButton = True
+        TabOrder = 1
+        DisplayFormat = 'dd mmm yyyy'
+        OnChange = vTglAkhir2Change
+      end
+    end
+  end
+  object QProses1: TOracleQuery
+    SQL.Strings = (
+      'begin'
+      '  cip_gl_pisma.proc_jurnal_kas(:pawal, :pakhir);'
+      '  commit;'
+      'end;')
+    Session = DMFrm.OS
+    Variables.Data = {
+      0300000002000000060000003A504157414C0C00000007000000786D01010101
+      0100000000070000003A50414B4849520C00000007000000786D011F01010100
+      000000}
+    Left = 312
+    Top = 240
+  end
+  object QProses2: TOracleQuery
+    SQL.Strings = (
+      'begin'
+      '  cip_gl_pisma.proc_jurnal_pembelian(:pawal, :pakhir);'
+      '  commit;'
+      'end;')
+    Session = DMFrm.OS
+    Variables.Data = {
+      0300000002000000060000003A504157414C0C00000000000000000000000700
+      00003A50414B4849520C0000000000000000000000}
+    Left = 352
+    Top = 256
+  end
+  object QProses3: TOracleQuery
+    SQL.Strings = (
+      'begin'
+      '  cip_gl_pisma.proc_jurnal_pembelian2(:pawal, :pakhir);'
+      '  commit;'
+      'end;')
+    Session = DMFrm.OS
+    Variables.Data = {
+      0300000002000000060000003A504157414C0C00000000000000000000000700
+      00003A50414B4849520C0000000000000000000000}
+    Left = 392
+    Top = 272
+  end
+  object Qproses4: TOracleQuery
+    SQL.Strings = (
+      'begin'
+      '  cip_gl_pisma.proc_jurnal_penjualan(:pawal, :pakhir);'
+      '  commit;'
+      'end;')
+    Session = DMFrm.OS
+    Variables.Data = {
+      0300000002000000060000003A504157414C0C00000000000000000000000700
+      00003A50414B4849520C0000000000000000000000}
+    Left = 432
+    Top = 288
+  end
+  object Qproses5: TOracleQuery
+    SQL.Strings = (
+      'begin'
+      '  cip_gl_pisma.proc_jurnal_jasa(:pawal, :pakhir);'
+      '  commit;'
+      'end;')
+    Session = DMFrm.OS
+    Variables.Data = {
+      0300000002000000060000003A504157414C0C00000000000000000000000700
+      00003A50414B4849520C0000000000000000000000}
+    Left = 464
+    Top = 304
+  end
+end

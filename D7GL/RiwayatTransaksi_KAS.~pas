@@ -1,0 +1,104 @@
+unit RiwayatTransaksi_KAS;
+
+interface
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, OleCtrls, MOZILLACONTROLLib_TLB, StdCtrls, Menus, ExtCtrls,
+  Buttons, ComCtrls;
+type
+  TRiwayat_Dept_Kas_Frm = class(TForm)
+    Mozilla: TMozillaBrowser;
+    procedure BitBtn5Click(Sender: TObject);
+    procedure MozillaNavigateComplete2(ASender: TObject;
+      const pDisp: IDispatch; var URL: OleVariant);
+    procedure MozillaBeforeNavigate2(ASender: TObject;
+      const pDisp: IDispatch; var URL, Flags, TargetFrameName, PostData,
+      Headers: OleVariant; var Cancel: WordBool);
+    procedure MozillaDownloadBegin(Sender: TObject);
+    procedure BitBtn4Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn6Click(Sender: TObject);
+    procedure Keluar1Click(Sender: TObject);
+    procedure entangAplikasi1Click(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Riwayat_Dept_Kas_Frm: TRiwayat_Dept_Kas_Frm;
+
+implementation
+
+{$R *.dfm}
+
+procedure TRiwayat_Dept_Kas_Frm.BitBtn5Click(Sender: TObject);
+begin
+//statusbar1.Panels[0].Text:=' Mencari '+edit1.Text;
+//Mozilla.Navigate(edit1.Text);
+end;
+
+procedure TRiwayat_Dept_Kas_Frm.MozillaNavigateComplete2(ASender: TObject;
+  const pDisp: IDispatch; var URL: OleVariant);
+begin
+//statusbar1.Panels[0].Text:=' Selesai..';
+end;
+
+procedure TRiwayat_Dept_Kas_Frm.MozillaBeforeNavigate2(ASender: TObject;
+  const pDisp: IDispatch; var URL, Flags, TargetFrameName, PostData,
+  Headers: OleVariant; var Cancel: WordBool);
+begin
+//statusbar1.Panels[0].Text:=' Mencari...'+mozilla.LocationURL;
+end;
+
+procedure TRiwayat_Dept_Kas_Frm.MozillaDownloadBegin(Sender: TObject);
+begin
+//statusbar1.Panels[0].Text:=' Mentransfer...'+mozilla.LocationURL;
+end;
+
+procedure TRiwayat_Dept_Kas_Frm.BitBtn4Click(Sender: TObject);
+begin
+mozilla.Stop;
+end;
+
+procedure TRiwayat_Dept_Kas_Frm.BitBtn2Click(Sender: TObject);
+begin
+Mozilla.GoForward;
+end;
+
+procedure TRiwayat_Dept_Kas_Frm.BitBtn1Click(Sender: TObject);
+begin
+Mozilla.GoBack;
+end;
+
+procedure TRiwayat_Dept_Kas_Frm.BitBtn6Click(Sender: TObject);
+begin
+Mozilla.Navigate('www.google.com');
+end;
+
+procedure TRiwayat_Dept_Kas_Frm.Keluar1Click(Sender: TObject);
+begin
+close;
+end;
+
+procedure TRiwayat_Dept_Kas_Frm.entangAplikasi1Click(Sender: TObject);
+begin
+showmessage('Design By : Affan...Delphier Amatier..'); 
+end;
+
+procedure TRiwayat_Dept_Kas_Frm.BitBtn3Click(Sender: TObject);
+begin
+mozilla.Refresh;
+end;
+
+procedure TRiwayat_Dept_Kas_Frm.FormShow(Sender: TObject);
+begin
+Mozilla.Refresh;
+Mozilla.Navigate('192.168.1.225\budgeting_link\budgeting\DETAIL_REALISASI_KAS_DEP.php');
+end;
+
+end.

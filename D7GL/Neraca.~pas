@@ -1,0 +1,715 @@
+unit Neraca;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, QRCtrls, Wwdatsrc, OracleData, Grids, Wwdbigrd, Wwdbgrid,
+  Wwdotdot, Wwdbcomb, StdCtrls, QuickRpt, ComCtrls, Mask, wwdbedit,
+  Wwdbspin, Buttons, ExtCtrls, wwmonthcalendar, wwdbdatetimepicker, Oracle,
+  jpeg;
+
+type
+  TNeracaFrm = class(TForm)
+    Panel1: TPanel;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    Panel2: TPanel;
+    Panel4: TPanel;
+    BtnClose: TBitBtn;
+    BitBtn5: TBitBtn;
+    Panel3: TPanel;
+    BitBtn1: TBitBtn;
+    dsQBrowse: TwwDataSource;
+    QuickRep1: TQuickRep;
+    TitleBand1: TQRBand;
+    ColumnHeaderBand1: TQRBand;
+    SummaryBand1: TQRBand;
+    QRLabel4: TQRLabel;
+    QRLTitle: TQRLabel;
+    Label15: TLabel;
+    vHeight: TwwDBSpinEdit;
+    Label16: TLabel;
+    BtnExport: TBitBtn;
+    wwDBGrid1: TwwDBGrid;
+    spTahun: TwwDBSpinEdit;
+    Label1: TLabel;
+    QBrowse: TOracleDataSet;
+    Panel5: TPanel;
+    QRLabel3: TQRLabel;
+    QBrowseKD_PERK1: TStringField;
+    QBrowseNAMA_PERKIRAAN1: TStringField;
+    QBrowseBLN_INI1: TFloatField;
+    QBrowseBLN_LALU1: TFloatField;
+    QBrowseKD_PERK2: TStringField;
+    QBrowseNAMA_PERKIRAAN2: TStringField;
+    QBrowseBLN_INI2: TFloatField;
+    QBrowseBLN_LALU2: TFloatField;
+    QBrowseGAP: TStringField;
+    QProc_Neraca: TOracleQuery;
+    spLevel: TwwDBSpinEdit;
+    Label2: TLabel;
+    Label3: TLabel;
+    QRLabel1: TQRLabel;
+    QRShape6: TQRShape;
+    QRShape7: TQRShape;
+    QRLPeriode: TQRLabel;
+    LookBulan: TwwDBComboBox;
+    QBrowse2: TOracleDataSet;
+    QBrowse2TAHUN: TIntegerField;
+    QBrowse2KD_PERK: TStringField;
+    QBrowse2AWAL_BULAN: TFloatField;
+    QBrowse2DEBET: TFloatField;
+    QBrowse2KREDIT: TFloatField;
+    QBrowse2NAMA_PERKIRAAN: TStringField;
+    QBrowse2ISDETAIL: TStringField;
+    QBrowse2AWAL_HARI: TFloatField;
+    QBrowse2AKHIR: TFloatField;
+    QBrowse2AWAL: TFloatField;
+    QBrowse2NAMA_PERKIRAAN2: TStringField;
+    dsQBrowse2: TwwDataSource;
+    TabSheet2: TTabSheet;
+    MywwDBGrid2: TwwDBGrid;
+    QuickRep2: TQuickRep;
+    QRBand1: TQRBand;
+    QRImage2: TQRImage;
+    QRLTitle2: TQRLabel;
+    QRLPeriode2: TQRLabel;
+    QRBand2: TQRBand;
+    QRLabel14: TQRLabel;
+    QRLabel16: TQRLabel;
+    QRLabel17: TQRLabel;
+    QRLabel18: TQRLabel;
+    QRLabel9: TQRLabel;
+    QRLabel10: TQRLabel;
+    QRLabel11: TQRLabel;
+    QRLabel12: TQRLabel;
+    QRShape17: TQRShape;
+    QRShape18: TQRShape;
+    QRShape19: TQRShape;
+    QRShape20: TQRShape;
+    QRShape21: TQRShape;
+    QRShape22: TQRShape;
+    QRShape23: TQRShape;
+    QRBand3: TQRBand;
+    QRDBText3: TQRDBText;
+    QRDBText1: TQRDBText;
+    QRDBText9: TQRDBText;
+    QRDBText10: TQRDBText;
+    QRDBText11: TQRDBText;
+    QRDBText12: TQRDBText;
+    QRExpr5: TQRExpr;
+    QRShape24: TQRShape;
+    QRShape25: TQRShape;
+    QRShape26: TQRShape;
+    QRShape27: TQRShape;
+    QRShape28: TQRShape;
+    QRShape29: TQRShape;
+    QRBand4: TQRBand;
+    QRLabel23: TQRLabel;
+    QRExpr6: TQRExpr;
+    QRExpr7: TQRExpr;
+    QRExpr8: TQRExpr;
+    QRExpr9: TQRExpr;
+    QRShape30: TQRShape;
+    QRShape31: TQRShape;
+    QRShape32: TQRShape;
+    QRShape33: TQRShape;
+    QRLabel24: TQRLabel;
+    QRLabel25: TQRLabel;
+    QRLabel26: TQRLabel;
+    QRLabel27: TQRLabel;
+    QRSysData1: TQRSysData;
+    QRShape34: TQRShape;
+    PageFooterBand1: TQRBand;
+    QRSysData2: TQRSysData;
+    QRDBText13: TQRDBText;
+    QBrowseKD_PERK_H1: TStringField;
+    QBrowseNM_PERK_H1: TStringField;
+    QBrowseKD_PERK_H2: TStringField;
+    QBrowseNM_PERK_H2: TStringField;
+    QBrowse2KD_PERK_H: TStringField;
+    QBrowse2NM_PERK_H: TStringField;
+    QRLabel13: TQRLabel;
+    QRLabel15: TQRLabel;
+    QRLabel28: TQRLabel;
+    QRShape35: TQRShape;
+    QRLabel29: TQRLabel;
+    QRLabel30: TQRLabel;
+    QBrowseVLVL: TFloatField;
+    QRGroup1: TQRGroup;
+    QRBand5: TQRBand;
+    QTot: TOracleDataSet;
+    dsQTot: TwwDataSource;
+    QTotJML_BLN_INI1: TFloatField;
+    QTotJML_BLN_LALU1: TFloatField;
+    QTotJML_BLN_INI2: TFloatField;
+    QTotJML_BLN_LALU2: TFloatField;
+    QRShape38: TQRShape;
+    QRShape45: TQRShape;
+    QBrowseIBARIS: TFloatField;
+    QBrowsePERSEN_INI1: TFloatField;
+    QBrowsePERSEN_LALU1: TFloatField;
+    QuickRep1_BACK: TQuickRep;
+    QRBand6: TQRBand;
+    QRLabel35: TQRLabel;
+    QRLabel36: TQRLabel;
+    QRImage3: TQRImage;
+    QRLabel37: TQRLabel;
+    QRBand7: TQRBand;
+    QRLabel38: TQRLabel;
+    QRLabel39: TQRLabel;
+    QRLabel40: TQRLabel;
+    QRLabel41: TQRLabel;
+    QRShape57: TQRShape;
+    QRShape58: TQRShape;
+    QRShape59: TQRShape;
+    QRShape60: TQRShape;
+    QRShape61: TQRShape;
+    QRLabel42: TQRLabel;
+    QRLabel43: TQRLabel;
+    QRLabel44: TQRLabel;
+    QRLabel45: TQRLabel;
+    QRShape62: TQRShape;
+    QRLabel46: TQRLabel;
+    QRLabel47: TQRLabel;
+    QRShape63: TQRShape;
+    QRLabel48: TQRLabel;
+    QRLabel49: TQRLabel;
+    QRLabel50: TQRLabel;
+    QRShape64: TQRShape;
+    QRLabel51: TQRLabel;
+    QRShape65: TQRShape;
+    QRShape66: TQRShape;
+    QRShape67: TQRShape;
+    QRBand8: TQRBand;
+    QRDBText14: TQRDBText;
+    QRDBText15: TQRDBText;
+    QRDBText16: TQRDBText;
+    QRDBText17: TQRDBText;
+    QRDBText18: TQRDBText;
+    QRDBText19: TQRDBText;
+    QRShape68: TQRShape;
+    QRShape69: TQRShape;
+    QRShape70: TQRShape;
+    QRShape71: TQRShape;
+    QRShape72: TQRShape;
+    QRExpr24: TQRExpr;
+    QRExpr25: TQRExpr;
+    QRShape73: TQRShape;
+    QRShape74: TQRShape;
+    QRShape75: TQRShape;
+    QRShape76: TQRShape;
+    QRExpr26: TQRExpr;
+    QRExpr27: TQRExpr;
+    QRBand9: TQRBand;
+    QRLabel52: TQRLabel;
+    QRLabel53: TQRLabel;
+    QRLabel54: TQRLabel;
+    QRLabel55: TQRLabel;
+    QRSysData4: TQRSysData;
+    QRShape77: TQRShape;
+    QRShape78: TQRShape;
+    QRShape79: TQRShape;
+    QRShape80: TQRShape;
+    QRShape81: TQRShape;
+    QRShape82: TQRShape;
+    QRLabel56: TQRLabel;
+    QRLabel57: TQRLabel;
+    QRLabel58: TQRLabel;
+    QRLabel59: TQRLabel;
+    QRLabel60: TQRLabel;
+    QRLabel61: TQRLabel;
+    QRDBText20: TQRDBText;
+    QRExpr28: TQRExpr;
+    QRExpr29: TQRExpr;
+    QRShape83: TQRShape;
+    QRShape84: TQRShape;
+    QRShape85: TQRShape;
+    QRShape86: TQRShape;
+    QRExpr30: TQRExpr;
+    QRExpr31: TQRExpr;
+    QRGroup2: TQRGroup;
+    QRBand10: TQRBand;
+    QRShape87: TQRShape;
+    QRShape88: TQRShape;
+    QRExpr32: TQRExpr;
+    QRExpr33: TQRExpr;
+    QRExpr34: TQRExpr;
+    QRExpr35: TQRExpr;
+    QRExpr36: TQRExpr;
+    QRExpr37: TQRExpr;
+    QRExpr38: TQRExpr;
+    QRShape89: TQRShape;
+    QRShape90: TQRShape;
+    QRShape91: TQRShape;
+    QRExpr39: TQRExpr;
+    QRShape92: TQRShape;
+    QRShape93: TQRShape;
+    QRExpr40: TQRExpr;
+    QRExpr41: TQRExpr;
+    QRShape94: TQRShape;
+    DetailBand1: TQRBand;
+    QRDBText6: TQRDBText;
+    QRDBText2: TQRDBText;
+    QRDBText7: TQRDBText;
+    QRShape2: TQRShape;
+    QRShape3: TQRShape;
+    QRExpr13: TQRExpr;
+    QRExpr14: TQRExpr;
+    QRShape41: TQRShape;
+    QRShape42: TQRShape;
+    QRImage1: TQRImage;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure wwDBGrid2TitleButtonClick(Sender: TObject;
+      AFieldName: String);
+    procedure wwDBGrid2CalcCellColors(Sender: TObject; Field: TField;
+      State: TGridDrawState; Highlight: Boolean; AFont: TFont;
+      ABrush: TBrush);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn5Click(Sender: TObject);
+    procedure TabSheet1Show(Sender: TObject);
+    procedure vHeightAfterUpClick(Sender: TObject);
+    procedure BtnExportClick(Sender: TObject);
+    procedure DBText5Click(Sender: TObject);
+    procedure QDetailAfterScroll(DataSet: TDataSet);
+    procedure TitleBand1BeforePrint(Sender: TQRCustomBand;
+      var PrintBand: Boolean);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure SummaryBand1BeforePrint(Sender: TQRCustomBand;
+      var PrintBand: Boolean);
+    procedure DetailBand1BeforePrint(Sender: TQRCustomBand;
+      var PrintBand: Boolean);
+    procedure QuickRep1BeforePrint(Sender: TCustomQuickRep;
+      var PrintReport: Boolean);
+    procedure wwDBGrid1URLOpen(Sender: TObject; var URLLink: String;
+      Field: TField; var UseDefault: Boolean);
+    procedure QuickRep2BeforePrint(Sender: TCustomQuickRep;
+      var PrintReport: Boolean);
+    procedure QRBand1BeforePrint(Sender: TQRCustomBand;
+      var PrintBand: Boolean);
+    procedure QBrowse2CalcFields(DataSet: TDataSet);
+    procedure FormShow(Sender: TObject);
+    procedure TabSheet2Show(Sender: TObject);
+    procedure QRBand5BeforePrint(Sender: TQRCustomBand;
+      var PrintBand: Boolean);
+  private
+    { Private declarations }
+    vfilter, vfilter2, vorder, vjudul : String;
+      vtot11, vtot12, vtot21, vtot22 : Real;
+    vawal, vakhir : TDate;
+  public
+    { Public declarations }
+  end;
+
+var
+  NeracaFrm: TNeracaFrm;
+
+implementation
+
+uses DM, Main, XPROCS, DateUtils;
+
+{$R *.dfm}
+
+procedure TNeracaFrm.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Action:=caFree;
+  NeracaFrm:=Nil;
+end;
+
+procedure TNeracaFrm.wwDBGrid2TitleButtonClick(Sender: TObject;
+  AFieldName: String);
+begin
+  if ((Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName<>'') then
+  begin
+     if (Sender as TwwDBGrid).DataSource.DataSet.FieldByName(AFieldName).FieldKind=fkData then
+        begin
+          if vorder=' ASC' then
+              vorder:=' DESC'
+          else
+              vorder:=' ASC';
+          (Sender as TwwDBGrid).DataSource.DataSet.DisableControls;
+          (Sender as TwwDBGrid).DataSource.DataSet.Close;
+          ((Sender as TwwDBGrid).DataSource.DataSet as TOracleDataSet).SetVariable('myparam',vfilter2+' order by '+(Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName+vorder);
+          (Sender as TwwDBGrid).DataSource.DataSet.Open;
+          (Sender as TwwDBGrid).DataSource.DataSet.EnableControls;
+        end
+        else
+          ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+  end
+  else
+  ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+
+end;
+
+procedure TNeracaFrm.wwDBGrid2CalcCellColors(Sender: TObject;
+  Field: TField; State: TGridDrawState; Highlight: Boolean; AFont: TFont;
+  ABrush: TBrush);
+begin
+  if not Highlight then
+    if (Sender as TwwDBGrid).ColumnByName(Field.FieldName).ReadOnly then
+    begin
+      ABrush.Color:=DMFrm.vclGridRead;
+      AFont.Color:=DMFrm.vclGridReadFont;
+    end
+    else
+    begin
+      ABrush.Color:=DMFrm.vclGridEdit;
+      AFont.Color:=DMFrm.vclGridEditFont;
+    end;
+end;
+
+procedure TNeracaFrm.BitBtn1Click(Sender: TObject);
+begin
+  QProc_Neraca.Close;
+  QProc_Neraca.SetVariable('ptahun',Round(spTahun.Value));
+  QProc_Neraca.SetVariable('pbulan',FormatFloat('00',LookBulan.ItemIndex+1));
+  QProc_Neraca.SetVariable('plevel',Round(spLevel.Value));
+  QProc_Neraca.Execute;
+  QBrowse.DisableControls;
+  vtot11:=0;
+  vtot12:=0;
+  vtot21:=0;
+  vtot22:=0;
+  QBrowse.Close;
+//  QBrowse.SetVariable('tahun',Round(spTahun.Value));
+  QBrowse.Open;
+  while not QBrowse.Eof do
+  begin
+      vtot11:=vtot11+QBrowseBLN_INI1.AsFloat;
+      vtot12:=vtot12+QBrowseBLN_LALU1.AsFloat;
+      vtot21:=vtot21+QBrowseBLN_INI2.AsFloat;
+      vtot22:=vtot22+QBrowseBLN_LALU2.AsFloat;
+      QBrowse.Next;
+  end;
+  QBrowse.First;
+  QBrowse.EnableControls;
+{  wwDBGrid1.ColumnByName('BLN_INI1').FooterValue:=FormatFloat('#,#;(#,#);-',vtot11);
+  wwDBGrid1.ColumnByName('BLN_LALU1').FooterValue:=FormatFloat('#,#;(#,#);-',vtot12);
+  wwDBGrid1.ColumnByName('BLN_INI2').FooterValue:=FormatFloat('#,#;(#,#);-',vtot21);
+  wwDBGrid1.ColumnByName('BLN_LALU2').FooterValue:=FormatFloat('#,#;(#,#);-',vtot22);
+ }
+  QTot.DisableControls;
+  QTot.Close;
+  QTot.Open;
+  QTot.EnableControls;
+end;
+
+procedure TNeracaFrm.BitBtn5Click(Sender: TObject);
+begin
+  DMFrm.QDateTime.Close;
+  DMFrm.QDateTime.Open;
+  case PageControl1.ActivePageIndex of
+  0 : begin
+        QRGroup1.Expression:='QBrowse.VLVL='+inttostr(strtoint(spLevel.Text)-1);      //QBrowse.VLVL='2'
+//        QRExpr2.Expression:='IF(QBrowse.VLVL='+spLevel.Text+','+''''+'JUMLAH'+''''+','+''''+'a'+''''+')';      //IF(QBrowse.VLVL='3','JUMLAH','.')
+//        QRExpr1.Expression:='IF(QBrowse.VLVL='+spLevel.Text+',SUM(QBrowse.BLN_INI1),0)';      //IF(QBrowse.VLVL='3',SUM(QBrowse.BLN_INI1),0)
+   //     QRExpr16.Expression:='IF(QBrowse.VLVL='+spLevel.Text+',(SUM(QBrowse.BLN_INI1)/QTot.JML_BLN_INI1)*100,0)';     //IF(QBrowse.VLVL='3',(SUM(QBrowse.BLN_INI1)/QTot.JML_BLN_INI1)*100,0)
+    //    QRExpr3.Expression:='IF(QBrowse.VLVL='+spLevel.Text+',SUM(QBrowse.BLN_LALU1),0)';      //IF(QBrowse.VLVL='3',SUM(QBrowse.BLN_LALU1),0)
+  //      QRExpr19.Expression:='IF(QBrowse.VLVL='+spLevel.Text+',(SUM(QBrowse.BLN_LALU1)/QTot.JML_BLN_LALU1)*100,0)';     //IF(QBrowse.VLVL='3',(SUM(QBrowse.BLN_LALU1)/QTot.JML_BLN_LALU1)*100,0)
+//        QRExpr10.Expression:='IF(QBrowse.VLVL='+spLevel.Text+','+''''+'JUMLAH'+''''+','+''''+'a'+''''+')';     //IF(QBrowse.VLVL='3','JUMLAH','.')
+//        QRExpr4.Expression:='IF(QBrowse.VLVL='+spLevel.Text+',SUM(QBrowse.BLN_INI2),0)';     //IF(QBrowse.VLVL='3',SUM(QBrowse.BLN_INI2),0)
+//        QRExpr21.Expression:='IF(QBrowse.VLVL='+spLevel.Text+',(SUM(QBrowse.BLN_INI2)/QTot.JML_BLN_INI2)*100,0)';     //IF(QBrowse.VLVL='3',(SUM(QBrowse.BLN_INI2)/QTot.JML_BLN_INI2)*100,0)
+ //       QRExpr11.Expression:='IF(QBrowse.VLVL='+spLevel.Text+',SUM(QBrowse.BLN_LALU2),0)';     //IF(QBrowse.VLVL='3',SUM(QBrowse.BLN_LALU2),0)
+ //       QRExpr20.Expression:='IF(QBrowse.VLVL='+spLevel.Text+',(SUM(QBrowse.BLN_LALU2)/QTot.JML_BLN_LALU2)*100,0)';        //IF(QBrowse.VLVL='3',(SUM(QBrowse.BLN_LALU2)/QTot.JML_BLN_LALU2)*100,0)
+ 
+        QBrowse.DisableControls;
+        QuickRep1.Preview;
+        QBrowse.EnableControls;
+      end;
+  1 : begin
+        QuickRep2.Preview;
+      end;
+  end;
+
+end;
+
+procedure TNeracaFrm.TabSheet1Show(Sender: TObject);
+begin
+  DMFrm.QCloseDate.Open;
+  wwDBGrid1.RowHeightPercent:=Round(vHeight.Value);
+  BtnExport.Enabled:=True;
+  QBrowse.Open;
+end;
+
+procedure TNeracaFrm.vHeightAfterUpClick(Sender: TObject);
+begin
+  case PageControl1.ActivePageIndex of
+  0 : wwDBGrid1.RowHeightPercent:=Round(vHeight.Value);
+  end;
+
+end;
+
+procedure TNeracaFrm.BtnExportClick(Sender: TObject);
+begin
+  if PageControl1.TabIndex = 0 then
+  begin
+    if QBrowse.Active then
+    begin
+       DMFrm.SaveDialog1.DefaultExt:='XLK';
+       DMFrm.SaveDialog1.Filter:='Excel files (*.XLK)|*.XLK';
+       DMFrm.SaveDialog1.FileName:=Caption;
+       wwDBGrid1.ExportOptions.TitleName:=Caption;
+         if DMFrm.SaveDialog1.Execute then
+         begin
+           try
+           wwDBGrid1.ExportOptions.FileName:=DMFrm.SaveDialog1.FileName;
+           wwDBGrid1.ExportOptions.Save;
+           ShowMessage('Simpan Sukses !');
+           except
+           ShowMessage('Simpan Gagal !');
+           end;
+         end;
+    end
+    else
+      ShowMessage('Tabel belum di-OPEN !');
+  end
+  else if PageControl1.TabIndex = 1 then
+  begin
+    if QBrowse2.Active then
+    begin
+       DMFrm.SaveDialog1.DefaultExt:='XLK';
+       DMFrm.SaveDialog1.Filter:='Excel files (*.XLK)|*.XLK';
+       DMFrm.SaveDialog1.FileName:=Caption;
+       MywwDBGrid2.ExportOptions.TitleName:='Detail '+Caption;
+         if DMFrm.SaveDialog1.Execute then
+         begin
+           try
+           MywwDBGrid2.ExportOptions.FileName:=DMFrm.SaveDialog1.FileName;
+           MywwDBGrid2.ExportOptions.Save;
+           ShowMessage('Simpan Sukses !');
+           except
+           ShowMessage('Simpan Gagal !');
+           end;
+         end;
+    end
+    else
+      ShowMessage('Tabel belum di-OPEN !');
+  else
+  begin
+    ShowMessage(PageControl1.TabIndex);
+  end;
+
+end;
+
+procedure TNeracaFrm.DBText5Click(Sender: TObject);
+var
+  DC : HDC;
+  ABitmap:TBitmap;
+begin
+  DC := GetDC (GetTopParentHandle);
+  ABitmap:=TBitmap.Create;
+  try
+    ABitmap.Width  := Width-9; //GetDeviceCaps (DC, HORZRES);
+    ABitmap.Height := Height-30; //GetDeviceCaps (DC, VERTRES);
+    BitBlt(ABitmap.Canvas.Handle, 0, 0, ABitmap.Width,
+           ABitmap.Height,DC, 0, 0, SRCCOPY);
+  finally
+    ReleaseDC (GetTopParentHandle, DC);
+  end;
+  DMFrm.SavePictureDialog1.FileName:=Caption;
+  if DMFrm.SavePictureDialog1.Execute then
+     ABitmap.SaveToFile(DMFrm.SavePictureDialog1.FileName);
+  ABitmap.Free;
+end;
+
+procedure TNeracaFrm.QDetailAfterScroll(DataSet: TDataSet);
+begin
+//  LRecords.Caption:='Data ke '+IntToStr(DataSet.RecNo)+' dari '+IntToStr(DataSet.RecordCount)+' data';
+end;
+
+procedure TNeracaFrm.TitleBand1BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+var
+tanggalan : string;
+begin
+  QRLTitle.Caption:=UpperCase(Caption);
+//  QRLPeriode.Caption:='Per : '+LookBulan.Text+' '+spTahun.Text;
+
+{azmi}
+  tanggalan:=datetostr(Trunc(EndOfTheMonth(strtodate('01/'+inttostr(LookBulan.ItemIndex+1)+'/'+spTahun.Text))));
+  QRLPeriode.Caption:='PERIODE BULAN : '+LookBulan.Text+' '+spTahun.Text;
+
+{  tanggalan:=datetostr(Trunc(EndOfTheMonth(strtodate('01/'+inttostr(LookBulan.ItemIndex+1)+'/'+spTahun.Text))));
+  QRLPeriode.Caption:='Per '+copy(tanggalan,1,2)+' '+LookBulan.Text+' '+spTahun.Text;
+{azmi}
+end;
+
+procedure TNeracaFrm.BitBtn3Click(Sender: TObject);
+var
+  vmyparam : String;
+  vbulan, vi : integer;
+begin
+end;
+
+procedure TNeracaFrm.SummaryBand1BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+//SummaryBand1.Height:=0;
+ // QRL11.Caption:=FormatFloat('0.0,0;(0.0,0);-',vtot11);
+ // QRL12.Caption:=FormatFloat('0.0,0;(0.0,0);-',vtot12);
+ // QRL21.Caption:=FormatFloat('0.0,0;(0.0,0);-',vtot21);
+ // QRL22.Caption:=FormatFloat('0.0,0;(0.0,0);-',vtot22);
+//  #,##0.##;(#,##0.##)
+
+{  QRL11.Caption:=FormatFloat('#,#;(#,#);-',vtot11);
+  QRL12.Caption:=FormatFloat('#,#;(#,#);-',vtot12);
+  QRL21.Caption:=FormatFloat('#,#;(#,#);-',vtot21);
+  QRL22.Caption:=FormatFloat('#,#;(#,#);-',vtot22); }
+
+end;
+
+procedure TNeracaFrm.DetailBand1BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+
+  if (QBrowseNAMA_PERKIRAAN1.AsString='ASSET')
+      or (QBrowseNAMA_PERKIRAAN1.AsString='TOTAL ASSET')
+      or (QBrowseNAMA_PERKIRAAN1.AsString='LIABILITAS')
+      or (QBrowseNAMA_PERKIRAAN1.AsString='TOTAL LIABILITAS')
+      or (QBrowseNAMA_PERKIRAAN1.AsString='EQUITY')
+      or (QBrowseNAMA_PERKIRAAN1.AsString='TOTAL EQUITY')
+      or (QBrowseNAMA_PERKIRAAN1.AsString='TOTAL LIABILITAS & EQUITY')
+      then
+  begin
+
+//    DetailBand1.Frame.DrawBottom:=TRUE;
+    DetailBand1.Frame.DrawTop:=TRUE;
+    QRDBText7.Font.Style:=QRDBText7.Font.Style+[fsBold]-[fsItalic];
+    QRDBText6.Font.Style:=QRDBText6.Font.Style+[fsBold]-[fsItalic];
+    QRDBText2.Font.Style:=QRDBText2.Font.Style+[fsBold]-[fsItalic];
+  end
+  else
+  begin
+    DetailBand1.Frame.DrawTop:=FALSE;
+    QRDBText7.Font.Style:=QRDBText7.Font.Style-[fsBold]-[fsItalic];
+    QRDBText6.Font.Style:=QRDBText6.Font.Style-[fsBold]-[fsItalic];
+    QRDBText2.Font.Style:=QRDBText2.Font.Style-[fsBold]-[fsItalic];
+  //  DetailBand1.Frame.DrawBottom:=FALSE;
+  end;
+
+
+{  if (QBrowseNAMA_PERKIRAAN1.AsString='AKTIVA') and (QBrowseVLVL.AsString='1') then
+    begin
+    QRDBText7.Enabled:=False;
+    DetailBand1.Height:=0
+    end
+    else
+    begin
+      QRDBText7.Enabled:=True;
+    DetailBand1.Height:=15;
+    end;
+  if (QBrowseNAMA_PERKIRAAN2.AsString='PASSIVA') and (QBrowseVLVL.AsString='1') then
+    QRDBText8.Enabled:=False
+    else
+      QRDBText8.Enabled:=True;
+
+{  if (QBrowseNAMA_PERKIRAAN1.AsString='AKTIVA') then
+    QRDBText7.Enabled:=False
+    else
+      QRDBText7.Enabled:=True;
+  if (QBrowseNAMA_PERKIRAAN2.AsString='PASSIVA') then
+    QRDBText8.Enabled:=False
+    else
+      QRDBText8.Enabled:=True;}
+
+end;
+
+procedure TNeracaFrm.QuickRep1BeforePrint(Sender: TCustomQuickRep;
+  var PrintReport: Boolean);
+begin
+//  QRImage1.Picture.Assign(DMFrm.vlogo.Picture);
+
+end;
+
+procedure TNeracaFrm.wwDBGrid1URLOpen(Sender: TObject; var URLLink: String;
+  Field: TField; var UseDefault: Boolean);
+var
+  vfilter : String;
+  vdd, vyy, vbulan, vi : integer;
+  vmyparam : String;
+begin
+  vyy:=round(spTahun.Value);
+  vbulan:=LookBulan.ItemIndex+1;
+  vawal:=EncodeDate(vyy,vbulan,1);
+  vakhir:=dateEndOfMonth(vawal);
+
+  vmyparam:='a.B00';
+  if vbulan>1 then
+  begin
+      for vi:=1 to vbulan-1 do
+      begin
+         vmyparam:=vmyparam+'+a.B'+FormatFloat('00',vi);
+      end;
+  end;
+  vmyparam:=vmyparam+' as awal_bulan';
+
+  QBrowse2.Close;
+  if Field.Name='QBrowseKD_PERK1' then
+  begin
+    vfilter:=' and (kd_perk like '''+QBrowseKD_PERK1.AsString+'%'')';
+    vjudul:=QBrowseKD_PERK1.AsString+' '+TrimLeft(QBrowseNAMA_PERKIRAAN1.AsString);
+  end;
+
+  if Field.Name='QBrowseKD_PERK2' then
+  begin
+    vfilter:=' and (kd_perk like '''+QBrowseKD_PERK2.AsString+'%'')';
+    vjudul:=QBrowseKD_PERK2.AsString+' '+TrimLeft(QBrowseNAMA_PERKIRAAN2.AsString);
+  end;
+  QBrowse2.SetVariable('tahun',vyy);
+  QBrowse2.SetVariable('myparam',vmyparam);
+  QBrowse2.SetVariable('pawal',Trunc(vawal));
+  QBrowse2.SetVariable('pakhir',Trunc(vakhir));
+  QBrowse2.SetVariable('vfilter',vfilter+' order by kd_perk');
+  QBrowse2.Open;
+  TabSheet2.Show;
+
+end;
+
+procedure TNeracaFrm.QuickRep2BeforePrint(Sender: TCustomQuickRep;
+  var PrintReport: Boolean);
+begin
+  QRImage2.Picture.Assign(DMFrm.vlogo.Picture);
+end;
+
+procedure TNeracaFrm.QRBand1BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  QRLTitle2.Caption:=UpperCase(vjudul);
+  QRLPeriode2.Caption:='Periode : '+FormatDateTime('dd mmm yyyy',vawal)+' s/d/ '+
+    FormatDateTime('dd mmm yyyy',vakhir);
+end;
+
+procedure TNeracaFrm.QBrowse2CalcFields(DataSet: TDataSet);
+begin
+  QBrowse2AWAL.AsFloat:=QBrowse2AWAL_BULAN.AsFloat+QBrowse2AWAL_HARI.AsFloat;
+  QBrowse2AKHIR.AsFloat:=QBrowse2AWAL_BULAN.AsFloat+
+    QBrowse2AWAL_HARI.AsFloat+
+    QBrowse2DEBET.AsFloat-
+    QBrowse2KREDIT.AsFloat;
+end;
+
+procedure TNeracaFrm.FormShow(Sender: TObject);
+begin
+  spTahun.Value:=StrToInt(FormatDateTime('yyyy', date));
+  LookBulan.ItemIndex:=StrToInt(FormatDateTime('mm', date))-1;
+  BitBtn1.Click();
+end;
+
+procedure TNeracaFrm.TabSheet2Show(Sender: TObject);
+begin
+  QBrowse2.Open;
+end;
+
+procedure TNeracaFrm.QRBand5BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+{if QBrowseVLVL.AsString='3' then
+  QRBand5.Height:=17
+else                    }
+  QRBand5.Height:=0;
+end;
+
+end.
+

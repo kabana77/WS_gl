@@ -1,0 +1,32 @@
+object RekapBudgetRealSubDepLPB: TRekapBudgetRealSubDepLPB
+  Left = 611
+  Top = 286
+  Width = 917
+  Height = 607
+  ActiveControl = Mozilla
+  Caption = 'Budgeting'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  FormStyle = fsMDIChild
+  OldCreateOrder = False
+  Position = poDefault
+  Visible = True
+  WindowState = wsMaximized
+  OnClose = FormClose
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Mozilla: TMozillaBrowser
+    Left = 0
+    Top = 0
+    Width = 901
+    Height = 569
+    Align = alClient
+    TabOrder = 0
+    ControlData = {000300001F5D0000CF3A0000}
+  end
+end

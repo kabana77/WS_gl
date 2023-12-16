@@ -1,0 +1,41 @@
+unit RekapBudgetRealSubDep_LPB;
+
+interface
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, OleCtrls, MOZILLACONTROLLib_TLB, StdCtrls, Menus, ExtCtrls,
+  Buttons, ComCtrls;
+type
+  TRekapBudgetRealSubDepLPB = class(TForm)
+    Mozilla: TMozillaBrowser;
+    procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  RekapBudgetRealSubDepLPB: TRekapBudgetRealSubDepLPB;
+
+implementation
+
+uses RekapBudgetReal_LPB;
+
+{$R *.dfm}
+
+procedure TRekapBudgetRealSubDepLPB.FormShow(Sender: TObject);
+begin
+Mozilla.Refresh;
+Mozilla.Navigate('192.168.1.225\budgeting_link\budgeting\BUDGET_REAL_SUB_LPB.php');
+end;
+
+procedure TRekapBudgetRealSubDepLPB.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Action:=caFree;
+  RekapBudgetRealSubDepLPB:=Nil;
+end;
+
+end.
